@@ -1,0 +1,74 @@
+-- 
+-- Roll No: 12
+-- Name: FATHIMA BISHARA A
+-- Program: Assingment-III
+-- 
+
+
+--
+-- Table structure for table publishers
+--
+create table publishers(publisherid int auto_increment primary key,name varchar(50) not null unique,address varchar(100));
+
+-- Table structure for table books
+--
+create table books(accno int auto_increment primary key,title varchar(100) not null unique,author varchar(50) not null,price float(6,2),type ENUM('lending','reference'),availability  ENUM('yes','no'),publisherid int,constraint issues_fk_publisherid foreign key(publisherid) references publishers(publisherid));
+
+-- Table structure for table members
+--
+create table members(memberid int auto_increment primary key,name varchar(50) not null,address varchar(100),type ENUM('staff','student'));
+
+-- Table structure for table issues
+--
+create table issues(issueid int auto_increment primary key,memberid int,accno int,issuedate DATE,duedate DATE,constraint issues_fk_memberid foreign key(memberid) references members(memberid));
+
+-- Table structure for table returns
+--
+create table returns(returnid int auto_increment primary key,memberid int,accno int,returndate DATE,fine int default 0,constraint issues_fk_memberid  foerign key(memberid)references members(memberid),constraint issues_fk_accno foerign key(accno)references books(accno),constraint returns_check_fine check(fine>=0));
+
+-- ---------create/alter statement commands----------- # This line may be removed in the actual file
+
+--
+-- Dumping data for table publishers
+--
+insert into publishers values(1,'anu','qwee');
+insert into publishers values(2,'manu','qfdrrdgbe');
+insert into publishers values(3,'ammu','gfrrtyh');
+insert into publishers values(4,'kjnu','jgtfyjfm');
+insert into publishers values(5,'mhnu','khtgyj');
+
+-- Dumping data for table books
+--
+insert into books values(11,'asfgf','erfde',3000,'lending','yes',4);
+insert into books values(13,'bssfgf','aberfde',2500,'reference','no',3);
+insert into books values(14,'abcfgf','abcde',1500,'reference','no',1);
+insert into books values(15,'khcfgf','wecde',500,'lending','yes',2);
+insert into books values(10,'sdf','asde',1000,'lending','yes',5);
+
+-- Dumping data for table members
+--
+insert into members values(1,'wer','errt','staff');
+insert into members values(2,'frth','sdee','student');
+insert into members values(3,'sdwer','fgrrt','staff');
+insert into members values(4,'wfrrg','eout','student');
+insert into members values(5,'dfg','efgt','staff');
+
+-- Dumping data for table issues
+--
+
+insert into issues values(101,1,10,"20-10-2023","20-01-2024");
+insert into issues values(102,3,11,"20-11-2023","2-01-2024");
+insert into issues values(103,4,15,"20-10-2023","27-10-2023");
+insert into issues values(104,2,10,"20-11-2023","01-02-2024");
+insert into issues values(105,1,11,"2-1-2023","2-01-2024");
+
+
+
+-- --------insert/update statement commands----------- # This line may be removed in the actcual file
+
+--
+-- SQl Query Statements
+--
+
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file
